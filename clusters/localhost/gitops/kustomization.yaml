@@ -1,0 +1,19 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+labels:
+  - pairs:
+      app.kubernetes.io/part-of: wac-hospital
+
+namespace: wac-hospital
+
+resources:
+  - prepare.kustomization.yaml
+  - cd.kustomization.yaml
+  - install.kustomization.yaml
+  - git-repository.yaml
+  - orp-or-planner-ufe.image-repository.yaml
+  - orp-or-planner-ufe.image-policy.yaml
+  - orp-or-planner-webapi.image-repository.yaml
+  - orp-or-planner-webapi.image-policy.yaml
+  - image-update-automation.yaml

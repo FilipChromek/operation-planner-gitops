@@ -1,0 +1,20 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - deployment.yaml
+  - service.yaml
+  - http-route.yaml
+
+configMapGenerator:
+  - name: orp-or-planner-webapi-mongodb-init
+    files:
+      - params/init-db.js
+  - name: orp-or-planner-webapi-config
+    literals:
+      - database=orp-or-planner
+
+labels:
+  - pairs:
+      app.kubernetes.io/component: orp-or-planner-webapi
+      wac-fiit.github.io/component: backend

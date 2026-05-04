@@ -1,0 +1,25 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: orp-or-planner-webapi
+spec:
+  selector:
+    pod: orp-or-planner-webapi-label
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: webapi-port
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: orp-openapi-ui
+spec:
+  selector:
+    pod: orp-or-planner-webapi-label
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 8081

@@ -1,0 +1,9 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: MicroFrontend
+metadata:
+  name: orp-or-planner-ufe
+spec:
+  frontendClass: md-shell
+  service:
+    name: orp-or-planner-ufe
+  modulePath: build/operation-planner-ufe.esm.js

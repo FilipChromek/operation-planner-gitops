@@ -1,0 +1,10 @@
+apiVersion: kustomize.config.k8s.io/v1alpha1
+kind: Component
+
+images:
+  - name: xchromek/orp-or-planner-ufe
+    newName: xchromek/orp-or-planner-ufe # {"$imagepolicy": "wac-hospital:orp-or-planner-ufe:name"}
+    newTag: main # {"$imagepolicy": "wac-hospital:orp-or-planner-ufe:tag"}
+  - name: xchromek/orp-or-planner-webapi
+    newName: xchromek/orp-or-planner-webapi # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:name"}
+    newTag: main # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:tag"}

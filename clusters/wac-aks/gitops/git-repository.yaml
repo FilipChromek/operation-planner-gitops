@@ -1,0 +1,14 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: orp-gitops-repo
+  namespace: wac-hospital
+spec:
+  interval: 1m0s
+  ref:
+    branch: main
+  timeout: 1m0s
+  url: https://github.com/FilipChromek/operation-planner-gitops
+# If repo is private, uncomment and create the secret on the cluster:
+#  secretRef:
+#    name: orp-repository-pat

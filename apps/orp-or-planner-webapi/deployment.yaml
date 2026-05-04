@@ -1,0 +1,138 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: orp-or-planner-webapi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      pod: orp-or-planner-webapi-label
+  template:
+    metadata:
+      labels:
+        pod: orp-or-planner-webapi-label
+    spec:
+      volumes:
+        - name: init-scripts
+          configMap:
+            name: orp-or-planner-webapi-mongodb-init
+      initContainers:
+        - name: init-mongodb
+          image: mongo:latest
+          imagePullPolicy: Always
+          command: ['mongosh', '--nodb', '-f', '/scripts/init-db.js']
+          volumeMounts:
+            - name: init-scripts
+              mountPath: /scripts
+          env:
+            - name: OR_PLANNER_API_MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-connection
+                  key: host
+            - name: OR_PLANNER_API_MONGODB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-connection
+                  key: port
+            - name: OR_PLANNER_API_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-auth
+                  key: username
+            - name: OR_PLANNER_API_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-auth
+                  key: password
+            - name: OR_PLANNER_API_MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: orp-or-planner-webapi-config
+                  key: database
+            - name: RETRY_CONNECTION_SECONDS
+              value: "5"
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "0.01"
+            limits:
+              memory: "256Mi"
+              cpu: "0.1"
+      containers:
+        - name: orp-or-planner-webapi
+          image: xchromek/orp-or-planner-webapi:latest
+          imagePullPolicy: Always
+          ports:
+            - name: webapi-port
+              containerPort: 8080
+          env:
+            - name: OR_PLANNER_API_ENVIRONMENT
+              value: production
+            - name: OR_PLANNER_API_PORT
+              value: "8080"
+            - name: OR_PLANNER_API_MONGODB_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-connection
+                  key: host
+            - name: OR_PLANNER_API_MONGODB_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: mongodb-connection
+                  key: port
+            - name: OR_PLANNER_API_MONGODB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-auth
+                  key: username
+            - name: OR_PLANNER_API_MONGODB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mongodb-auth
+                  key: password
+            - name: OR_PLANNER_API_MONGODB_DATABASE
+              valueFrom:
+                configMapKeyRef:
+                  name: orp-or-planner-webapi-config
+                  key: database
+            - name: OR_PLANNER_API_MONGODB_COLLECTION_ROOMS
+              value: rooms
+            - name: OR_PLANNER_API_MONGODB_COLLECTION_PATIENTS
+              value: patients
+            - name: OR_PLANNER_API_MONGODB_COLLECTION_STAFF
+              value: staff
+            - name: OR_PLANNER_API_MONGODB_TIMEOUT_SECONDS
+              value: "5"
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "0.01"
+            limits:
+              memory: "512Mi"
+              cpu: "0.3"
+
+        - name: openapi-ui
+          image: swaggerapi/swagger-ui
+          imagePullPolicy: Always
+          ports:
+            - name: api-ui
+              containerPort: 8081
+          env:
+            - name: PORT
+              value: "8081"
+            - name: URL
+              value: /orp-openapi
+            - name: BASE_URL
+              value: /orp-openapi-ui
+            - name: FILTER
+              value: 'true'
+            - name: DISPLAY_OPERATION_ID
+              value: 'true'
+          resources:
+            requests:
+              memory: "16M"
+              cpu: "0.01"
+            limits:
+              memory: "64M"
+              cpu: "0.1"

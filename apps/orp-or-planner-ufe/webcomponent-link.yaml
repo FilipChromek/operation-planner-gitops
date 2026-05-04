@@ -1,0 +1,25 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: WebComponent
+metadata:
+  name: orp-or-planner-ufe-link
+spec:
+  microFrontend: polyfea-md-shell
+  element: polyfea-md-app
+  attributes:
+    - name: headline
+      value: "Plánovanie operačných sál"
+    - name: short-headline
+      value: "OR Planner"
+    - name: supporting-text
+      value: |
+        Plánovanie operácií, správa pacientov, sál a personálu
+    - name: material-icon
+      value: surgical
+    - name: href
+      value: ./orp-or-planner
+  priority: 10
+  displayRules:
+    - anyOf:
+        - context-name: applications
+        - context-name: rail-content
+        - context-name: drawer-content

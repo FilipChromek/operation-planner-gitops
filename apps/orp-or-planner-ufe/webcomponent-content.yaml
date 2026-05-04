@@ -1,0 +1,16 @@
+apiVersion: polyfea.github.io/v1alpha1
+kind: WebComponent
+metadata:
+  name: orp-or-planner-ufe-content
+spec:
+  microFrontend: orp-or-planner-ufe
+  element: orp-or-app
+  attributes:
+    - name: base-path
+      value: /orp-or-planner/
+    - name: api-base
+      value: /orp-api
+  displayRules:
+    - allOf:
+        - context-name: main-content
+        - path: "^(\\.?/)?orp-or-planner(/.*)?$"

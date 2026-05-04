@@ -1,0 +1,18 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - https://github.com/polyfea/manifests//controller
+  - https://github.com/polyfea/manifests//md-shell
+  - https://github.com/polyfea/manifests//gitops/fluxcd
+  - http-route.yaml
+
+configMapGenerator:
+  - name: polyfea-shell-cfg
+    namespace: polyfea
+    options:
+      disableNameSuffixHash: true
+    literals:
+      - APP_TITLE=Nemocnica WAC — OR Planner
+      - SERVICE_TYPE=ClusterIP
+      - CSP_HEADER=default-src 'self'; font-src 'self' https://fonts.gstatic.com https://fonts.googleapis.com; script-src 'strict-dynamic' 'nonce-{NONCE_VALUE}'; worker-src 'self'; manifest-src 'self'; style-src 'self' 'strict-dynamic' 'nonce-{NONCE_VALUE}' https://fonts.googleapis.com; style-src-attr 'self' 'unsafe-inline'; img-src *; connect-src 'self';
