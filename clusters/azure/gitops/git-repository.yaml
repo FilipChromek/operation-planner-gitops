@@ -9,7 +9,4 @@ spec:
     branch: main
   timeout: 1m0s
   url: https://github.com/FilipChromek/operation-planner-gitops
-# If repo is private, uncomment and create the secret on the cluster:
-#  secretRef:
-#    name: orp-repository-pat
 
