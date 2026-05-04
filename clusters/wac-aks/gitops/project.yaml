@@ -6,7 +6,7 @@ spec:
   title: "Plánovanie využitia operačných sál"
   description: "Plánovanie operácií, správa pacientov, sál a zdravotníckeho personálu."
   authors: "Filip Chromek, Dominik Mojto"
-  azureLink: "https://wac-2025.westeurope.cloudapp.azure.com/fea/orp-or-planner"
+  azureLink: "http://or-planner-wac.westeurope.cloudapp.azure.com/fea/orp-or-planner"
   frontendRepoUrl: "https://github.com/FilipChromek/operation-planner-ufe"
   backendRepoUrl: "https://github.com/FilipChromek/operation-planner-webapi"
   gitopsRepoUrl: "https://github.com/FilipChromek/operation-planner-gitops"
