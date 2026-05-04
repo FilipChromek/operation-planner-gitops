@@ -6,4 +6,4 @@ images:
     newTag: main.20260504.0047 # {"$imagepolicy": "wac-hospital:orp-or-planner-ufe:tag"}
   - name: xchromek/orp-or-planner-webapi
     newName: xchromek/orp-or-planner-webapi # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:name"}
-    newTag: main # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:tag"}
+    newTag: main.20260504.1641 # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:tag"}
