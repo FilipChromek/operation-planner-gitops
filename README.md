@@ -1,7 +1,3 @@
-# operation-planner-gitops
-
-GitOps repozitár pre projekt **Plánovanie využitia operačných sál** (FIIT WAC, Filip Chromek + Dominik Mojto).
-
 ## Štruktúra
 
 ```
@@ -27,21 +23,3 @@ clusters/
     gitops/                # GitRepository / Kustomizations / project status
 ```
 
-Pred prvým použitím nahradenie placeholderov:
-
-- `FilipChromek` → tvoje GitHub username
-- `xchromek` → tvoje Docker Hub username
-
-```powershell
-# PowerShell
-$ghId = "tvoj-github-username"
-$dockerId = "tvoj-docker-username"
-Get-ChildItem -Recurse -Include *.yaml,*.yml | ForEach-Object {
-  (Get-Content $_.FullName) `
-    -replace 'FilipChromek', $ghId `
-    -replace 'xchromek', $dockerId |
-  Set-Content $_.FullName
-}
-```
-
-Detailné inštrukcie pozri `../SETUP.md`.
