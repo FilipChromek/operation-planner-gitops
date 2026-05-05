@@ -1,6 +1,5 @@
 ## Štruktúra
 
-
 ```
 apps/
   orp-or-planner-ufe/      # frontend (Stencil micro-FE)
