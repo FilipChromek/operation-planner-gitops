@@ -3,8 +3,8 @@ kind: Component
 
 images:
   - name: xchromek/orp-or-planner-ufe
-    newName: xchromek/orp-or-planner-ufe # {"$imagepolicy": "wac-hospital:orp-or-planner-ufe:name"}
-    newTag: main.20260504.2221 # {"$imagepolicy": "wac-hospital:orp-or-planner-ufe:tag"}
+    newName: xchromek/orp-or-planner-ufe
+    newTag: "1.2.1"
   - name: xchromek/orp-or-planner-webapi
-    newName: xchromek/orp-or-planner-webapi # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:name"}
-    newTag: main.20260504.2239 # {"$imagepolicy": "wac-hospital:orp-or-planner-webapi:tag"}
+    newName: xchromek/orp-or-planner-webapi
+    newTag: "1.2.1"
