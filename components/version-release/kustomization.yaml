@@ -4,7 +4,7 @@ kind: Component
 images:
   - name: xchromek/orp-or-planner-ufe
     newName: xchromek/orp-or-planner-ufe
-    newTag: "1.0.0"
+    newTag: latest
   - name: xchromek/orp-or-planner-webapi
     newName: xchromek/orp-or-planner-webapi
-    newTag: "1.0.0"
+    newTag: latest
